@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema elementFormDefault="qualified"
+	targetNamespace="http://celebrate.com/xsd/celebrate/1.0" xmlns:cb="http://celebrate.com/xsd/celebrate/1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Questions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Question" type="cb:Question" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Question">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:long" />
+			<xs:element name="Title" type="xs:string" />
+			<xs:element name="Frequency" type="xs:string" />
+			<xs:element name="Response" type="xs:string" />
+			<xs:element name="History" type="xs:string" />
+			<xs:element name="Comments" type="cb:Comment" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="AvailableResponses" type="cb:AvailableResponse" minOccurs="0" maxOccurs="unbounded" />			
+			<xs:element name="DateTime" type="xs:dateTime" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Comments">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Comment" type="cb:Comment" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="AvailableResponses">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AvailableResponse" type="cb:AvailableResponse" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="AvailableResponse">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:long" />
+			<xs:element name="Response" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Comment">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:long" />
+			<xs:element name="CommentText" type="xs:string" />
+			<xs:element name="Likes" type="xs:int" />
+			<xs:element name="DateTime" type="xs:dateTime" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="User">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UserId" type="xs:long" />
+				<xs:element name="Username" type="xs:string" />
+				<xs:element name="Firstname" type="xs:string" />
+				<xs:element name="Lastname" type="xs:string" />
+				<xs:element name="Email" type="xs:string" />
+				<xs:element name="Password" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="QuestionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Value" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="BooleanRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Value" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="LoginRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Email" type="xs:string" />
+				<xs:element name="Password" type="xs:string" />
+				<xs:element name="GuestId" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="LoginResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Email" type="xs:string" />
+				<xs:element name="AuthTokenValidUntil" type="xs:string" />
+				<xs:element name="GuestId" type="xs:string" />
+				<xs:element name="Status" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="SignUpRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Email" type="xs:string" />
+				<xs:element name="Password" type="xs:string" />
+				<xs:element name="GuestId" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="SignUpResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Email" type="xs:string" />
+				<xs:element name="GuestId" type="xs:string" />
+				<xs:element name="Status" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

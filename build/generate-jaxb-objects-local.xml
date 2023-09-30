@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+
+<project basedir="." name="celebrate-model" default="all">
+  <description>
+  		This is the build file for generating java source files from schema using JAXB Compiler.
+  </description>
+  
+  <property name="schema.dir" value="." />
+  <property name="target.dir" value="../src" />
+  <property name="bindings.dir" value="." />
+
+	
+	<property name="lib.dir" value="lib" />
+
+	   <path id="jaxb2-classpath">
+		    <fileset dir="${lib.dir}" includes="*.jar" />
+	   </path>
+
+
+	<taskdef name="xjc2" classname="com.sun.tools.xjc.XJCTask">
+	    <classpath refid="jaxb2-classpath" />
+	 </taskdef>
+
+	<target name="all" depends="generate">
+
+	</target>
+	
+    <target name="init"/>
+
+	<target name="generate" description="Generate Integration Java source files" depends="init">
+	    <echo message="Compiling seed retrieval schema..." />
+	  	<xjc2 extension="true" destdir="${target.dir}">
+	  		<binding dir="${bindings.dir}">
+	  			<include name="celebrate.xjb"/>
+	  		</binding>
+
+	  		<schema dir="${schema.dir}">
+	  			<include name="celebrate-v1.0.xsd" />
+	  		</schema>
+
+	  		<produces dir="${target.dir}" >
+	  			<include name="com/soa/model/**/*.*"/>
+	  		</produces>
+	  	</xjc2>
+		
+	 </target>
+</project>
